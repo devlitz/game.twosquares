@@ -31,7 +31,7 @@ right - 39
 */
 
 window.addEventListener("touchstart", function(e){
-  if !(e.changedTouches == undefined) 
+  if (!(e.changedTouches == undefined))
   touches.x = parseInt(e.changedTouches[0].clientX)
   touches.y = parseInt(e.changedTouches[0].clientY);
 }, false)
