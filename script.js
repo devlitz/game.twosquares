@@ -36,7 +36,8 @@ window.addEventListener("touchstart", function(e){
 }, false)
 
 window.addEventListener("touchend", function(e){
-  touches = [];
+  touches.x = undefined;
+  touches.y = undefined;
 }, false)
 
 document.addEventListener("touchmove", function(e) {
