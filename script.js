@@ -88,7 +88,10 @@ function bounds(){
 function touchMovement(){
   if ( !(touches[0] == undefined))
   //left
-    alert(touches[0].clientX)
+    if (touches[0].clientX < (canvas.width / 3)) player.x-=speed;
+    else if (touches[0].clientX > (canvas.width * 2 / 3)) player.x+=speed;
+    else if ((touches[0].clientX < (canvas.width * 2 / 3)) && (touches[0].clientX > (canvas.width / 3))) player.y+=speed;
+    else ;
   //right
 
   //up
