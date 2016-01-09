@@ -88,12 +88,12 @@ function bounds(){
 }
 
 function touchMovement(){
-  console.log(touches.x)
   if (!(touches.x == undefined))
   //left
     if (touches.x < (canvas.width / 3)) player.x-=speed;
-    else if (touches.x > (canvas.width * 2 / 3)) player.x+=speed;
-    else if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3))) player.y+=speed;
+    if (touches.x > (canvas.width * 2 / 3)) player.x+=speed;
+    if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3)) && (touches.y > (canvas.height /2))) player.y+=speed;
+    if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3)) && (touches.y < (canvas.height /2))) player.y-=speed;
     else ;
   //right
 
