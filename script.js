@@ -2,8 +2,10 @@ var canvas = document.getElementById("mainCanvas");
 var context = canvas.getContext("2d");
 
 var keys = [];
+canvas.width = window.innerWidth - 20
+canvas.height = window.innerHeight - 40
 
-var width = canvas.width, speed = 10, height = canvas.height;
+var width = canvas.width, speed = 4, height = canvas.height;
 
 var player = {x: 40, y: 40, width: 20, height: 20};
 
