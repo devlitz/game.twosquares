@@ -4,7 +4,7 @@ canvas.height = window.innerHeight - 40;
 var context = canvas.getContext("2d");
 
 var keys = [];
-
+var touches = [];
 
 var width = canvas.width, speed = 4, height = canvas.height;
 
@@ -13,6 +13,7 @@ var player = {x: 40, y: 40, width: 20, height: 20};
 var npc = {x: Math.random() * (width - 20), y: Math.random() * (height - 20), width: 20, height: 20};
 
 var score = 0;
+
 
 window.addEventListener("keydown",  function(e){
          keys[e.keyCode] = true;
@@ -29,6 +30,20 @@ left - 37
 right - 39
 */
 
+window.addEventListener("touchstart", function(e){
+  var touchobj = e.changedTouches[0];
+  console.log(touches);
+  alert(e.changedTouches[0].pageX);
+}, false)
+
+window.addEventListener("touchend", function(e){
+  touches = [];
+}, false)
+
+document.addEventListener("touchmove", function(e) {
+  e.preventDefault();
+}, false)
+
 function game(){
    update();
    render();
@@ -36,6 +51,7 @@ function game(){
 
 function update(){
   keyMovement();
+  touchMovement();
   bounds();
   if(collisionRect(player, npc)) processCollision();
 }
@@ -69,6 +85,11 @@ function bounds(){
   if(player.y <= 0) player.y = 0;
   if(player.x >= width - player.width) player.x = width - player.width;
   if(player.y >= height - player.height) player.y = height - player.height;
+}
+
+function touchMovement(){
+  if (canvas.width >= canvas.height) ;
+  else ;
 }
 
 function keyMovement(){
