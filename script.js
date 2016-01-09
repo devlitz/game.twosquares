@@ -1,9 +1,10 @@
 var canvas = document.getElementById("mainCanvas");
+canvas.width = window.innerWidth - 20;
+canvas.height = window.innerHeight - 40;
 var context = canvas.getContext("2d");
 
 var keys = [];
-canvas.width = window.innerWidth - 20
-canvas.height = window.innerHeight - 40
+
 
 var width = canvas.width, speed = 4, height = canvas.height;
 
@@ -34,35 +35,50 @@ function game(){
 }
 
 function update(){
-  if(keys[38]) player.y-=speed;
-  if(keys[40]) player.y+=speed;
-  if(keys[37]) player.x-=speed;
-  if(keys[39]) player.x+=speed;
+  keyMovement();
+  bounds();
+  if(collisionRect(player, npc)) processCollision();
+}
 
+function render(){
+  clearCanvas();
+
+  makeCharacter(player, "blue")
+  makeCharacter(npc, "green")
+  makeScore(score)
+
+}
+
+function makeScore(score){
+  context.fillStyle = "black";
+  context.font = "bold 32px CharterBT"
+  context.fillText(score, canvas.width / 2, 30);
+}
+
+function makeCharacter(character, color) {
+  context.fillStyle = color;
+  context.fillRect(character.x, character.y, character.width, character.height);
+}
+
+function clearCanvas(){
+  context.clearRect(0, 0, width, height)
+}
+
+function bounds(){
   if(player.x <= 0) player.x = 0;
   if(player.y <= 0) player.y = 0;
   if(player.x >= width - player.width) player.x = width - player.width;
   if(player.y >= height - player.height) player.y = height - player.height;
-
-  if(collisionRect(player, npc)) process();
 }
 
-function render(){
-  context.clearRect(0, 0, width, height)
-
-  context.fillStyle = "blue";
-  context.fillRect(player.x, player.y, player.width, player.height);
-
-  context.fillStyle = "green";
-  context.fillRect(npc.x, npc.y, npc.width, npc.height);
-
-  context.fillStyle = "black";
-  context.font = "bold 32px CharterBT"
-  context.fillText(score, canvas.width / 2, 30);
-
+function keyMovement(){
+  if(keys[38]) player.y-=speed;
+  if(keys[40]) player.y+=speed;
+  if(keys[37]) player.x-=speed;
+  if(keys[39]) player.x+=speed;
 }
 
-function process(){
+function processCollision(){
   score++;
   npc.x = Math.random() * (width - 20);
   npc.y = Math.random() * (height - 20);
