@@ -4,7 +4,7 @@ canvas.height = window.innerHeight - 40;
 var context = canvas.getContext("2d");
 
 var keys = [];
-var touches = [];
+var touches = {x: undefined, y: undefined};
 
 var width = canvas.width, speed = 4, height = canvas.height;
 
@@ -31,7 +31,8 @@ right - 39
 */
 
 window.addEventListener("touchstart", function(e){
-  var touchobj = e.changedTouches[0];
+  touches.x = parseInt(e.changedTouches[0].clientX)
+  touches.y = parseInt(e.changedTouches[0].clientX)
 }, false)
 
 window.addEventListener("touchend", function(e){
@@ -86,11 +87,12 @@ function bounds(){
 }
 
 function touchMovement(){
-  if ( !(touches[0] == undefined))
+  console.log(touches.x)
+  if (!(touches.x == undefined))
   //left
-    if (touches[0].clientX < (canvas.width / 3)) player.x-=speed;
-    else if (touches[0].clientX > (canvas.width * 2 / 3)) player.x+=speed;
-    else if ((touches[0].clientX < (canvas.width * 2 / 3)) && (touches[0].clientX > (canvas.width / 3))) player.y+=speed;
+    if (touches.x < (canvas.width / 3)) player.x-=speed;
+    else if (touches.x > (canvas.width * 2 / 3)) player.x+=speed;
+    else if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3))) player.y+=speed;
     else ;
   //right
 
