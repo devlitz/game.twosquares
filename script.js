@@ -32,7 +32,7 @@ right - 39
 
 window.addEventListener("touchstart", function(e){
   touches.x = parseInt(e.changedTouches[0].clientX)
-  touches.y = parseInt(e.changedTouches[0].clientX)
+  touches.y = parseInt(e.changedTouches[0].clientY)
 }, false)
 
 window.addEventListener("touchend", function(e){
@@ -88,12 +88,14 @@ function bounds(){
 }
 
 function touchMovement(){
-  if (!(touches.x == undefined))
+
+  if (!(touches.x == undefined) && !(touches.y == undefined))
+  console.log(touches.y);
   //left
     if (touches.x < (canvas.width / 3)) player.x-=speed;
     if (touches.x > (canvas.width * 2 / 3)) player.x+=speed;
-    if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3)) && (touches.y <= (canvas.height /2))) player.y+=speed;
-    if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3)) && (touches.y > (canvas.height /2))) player.y-=speed;
+    if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3)) && (touches.y <= (canvas.height /2))) player.y-=speed;
+    if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3)) && (touches.y > (canvas.height /2))) player.y+=speed;
     else ;
   //right
 
