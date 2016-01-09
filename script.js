@@ -32,8 +32,6 @@ right - 39
 
 window.addEventListener("touchstart", function(e){
   var touchobj = e.changedTouches[0];
-  console.log(touches);
-  alert(e.changedTouches[0].pageX);
 }, false)
 
 window.addEventListener("touchend", function(e){
@@ -88,8 +86,17 @@ function bounds(){
 }
 
 function touchMovement(){
-  if (canvas.width >= canvas.height) ;
-  else ;
+  if ((canvas.width >= canvas.height) && !(touches[0] == undefined))
+  //left
+    if (touches[0].clientX < (canvas.width / 3)) player.x-=speed;
+  //right
+
+  //up
+
+  //down
+
+  ;
+  if (canvas.width < canvas.height) ;
 }
 
 function keyMovement(){
