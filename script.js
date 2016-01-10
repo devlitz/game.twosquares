@@ -1,19 +1,20 @@
 var canvas = document.getElementById("mainCanvas");
-canvas.width = window.innerWidth - 20;
-canvas.height = window.innerHeight - 40;
 var context = canvas.getContext("2d");
-
 var keys = [];
 var touches = {x: undefined, y: undefined};
-
 var width = canvas.width, speed = 4, height = canvas.height;
-
 var player = {x: 40, y: 40, width: 20, height: 20};
-
 var npc = {x: Math.random() * (width - 20), y: Math.random() * (height - 20), width: 20, height: 20};
-
 var score = 0;
+canvas.width = window.innerWidth - 20;
+canvas.height = window.innerHeight - 40;
 
+/*
+up - 38
+down - 40
+left - 37
+right - 39
+*/
 
 window.addEventListener("keydown",  function(e){
          keys[e.keyCode] = true;
@@ -22,13 +23,6 @@ window.addEventListener("keydown",  function(e){
 window.addEventListener("keyup",  function(e){
          delete keys[e.keyCode];
 }, false);
-
-/*
-up - 38
-down - 40
-left - 37
-right - 39
-*/
 
 window.addEventListener("touchstart", function(e){
   if (!(e.changedTouches == undefined))
