@@ -98,14 +98,7 @@ function touchMovement(){
     if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3)) && (touches.y <= (canvas.height /2))) player.y-=speed;
     if ((touches.x < (canvas.width * 2 / 3)) && (touches.x > (canvas.width / 3)) && (touches.y > (canvas.height /2))) player.y+=speed;
     else ;
-  //right
-
-  //up
-
-  //down
-
   ;
-  if (canvas.width < canvas.height) ;
 }
 
 function keyMovement(){
